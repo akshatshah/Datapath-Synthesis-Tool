@@ -1,4 +1,12 @@
+#ifndef ALLOCATE_BIND
+#define ALLOCATE_BIND
 
+
+
+int** func_compat;
+int** reg_compat;
+
+vector<operation> op;
 
 struct fu_resource
 {
@@ -8,6 +16,7 @@ struct fu_resource
     int max_count; /* max no. of resources needed
 		    = max no. of parallel opns of this type in the schedule.
 		    */
+    int tstep;  //time step
 };
 
 struct register
@@ -23,6 +32,8 @@ struct register
     struct src_des destination[MAXNUMDESTNS];
     int sleep_ctrl_index;
     int off_steps[MAXTIME];
+    int first;//first access
+    int last;//last access
 };
 
 struct func_unit
@@ -41,6 +52,65 @@ struct func_unit
     int off_steps[MAXTIME];
 };
 
-void allocate(){
-  
+void allocate_bind_fu(){
+  int n= op.size();
+  func_compat = new int*[n];
+
+  for(int i=0; i<n; i++)
+  {
+    func_compat[i]= new int[n];
+  }
+
+  for(i=0; i<n; i++){
+      for(j=0;j<n;j++){
+        if(i==j)
+        {
+          func_compat[i][j]==1;
+          func_compat[j][i]==1;
+        }
+        if((op[i][j].type()==op[j][i].type())&&(op[i][j].tstep()!=op[j][i].tstep()
+        {
+          func_compat[i][j]==1;
+          func_compat[i][j]==1;
+        }
+        else{
+          func_compat[i][j]==0;
+          func_compat[j][i]==0;
+        }
+      }
+      clique_partition(func_compat,n);
 }
+
+void allocate_bind_reg(){
+  int edge= op.size();
+  reg_compat = new int*[n];
+
+  for(int i =0; i<n; i++)
+  {
+    reg_compat[i]= new int[n];
+  }
+
+
+  for(i=0; i<n; i++){
+      for(j=0;j<n;j++){
+        if(i==j)
+        {
+          reg_compat[i][j]==1;
+          reg_compat[j][i]==1;
+        }
+        if((op[i][j].type()==op[j][i].type())&&(op[i][j].tstep()!=op[j][i].tstep()
+        {
+          reg_compat[i][j]==1;
+          reg_compat[i][j]==1;
+        }
+        else{
+          reg_compat[i][j]==0;
+          reg_compat[j][i]==0;
+        }
+      }
+
+      clique_partition(reg_compat,n);
+}
+}
+
+#endif
