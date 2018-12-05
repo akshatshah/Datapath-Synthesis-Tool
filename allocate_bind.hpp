@@ -79,6 +79,22 @@ void allocate_bind_fu(){
         }
       }
       clique_partition(func_compat,n);
+
+      for(i=0;i<MAXCLIQUES;i++)
+      {
+        if(clique_set[i].size==unknown)
+          break;
+        printf(" Clique #%d (size = %d) = { ",i, clique_set[i].size);
+
+        for(j=0; j<MAXCLIQUES; j++)
+      	{
+      	    if(clique_set[i].members[j] != UNKNOWN)
+      		printf(" %d ", clique_set[i].members[j]);
+      	    else
+      		break;
+      	}
+      	printf (" }\n");
+      }
 }
 
 void allocate_bind_reg(){
@@ -110,6 +126,22 @@ void allocate_bind_reg(){
       }
 
       clique_partition(reg_compat,n);
+
+      for(i=0;i<MAXCLIQUES;i++)
+      {
+        if(clique_set[i].size==unknown)
+          break;
+        printf(" Clique #%d (size = %d) = { ",i, clique_set[i].size);
+
+        for(j=0; j<MAXCLIQUES; j++)
+      	{
+      	    if(clique_set[i].members[j] != UNKNOWN)
+      		printf(" %d ", clique_set[i].members[j]);
+      	    else
+      		break;
+      	}
+      	printf (" }\n");
+      }
 }
 }
 
