@@ -1,7 +1,7 @@
 #ifndef MUX_GEN
 #define MUX_GEN
 
-#include "allocate_bind.h"
+#include "allocate_bind.hpp"
 
 void mux_gen()
 {

@@ -49,12 +49,11 @@ void allocate_bind_fu(){
 
 void allocate_bind_reg(){
 
-for(i=0;i<input.size();i++)
+for(i=0;i<registers.size();i++)
 {
-  registers.push_back(reg());
-  registers.back().name=input[i];
+  op[i].tstep=;
   registers.back().t_1=0;
-
+  int m = op.size();
   for(j=0;j<m;j++)
   {
     if(op[m].op1==input[i]||op[m].op2==input[i])
@@ -65,9 +64,15 @@ for(i=0;i<input.size();i++)
 for(i=0;i<output.size();i++)
 {
   registers.push_back(reg());
-  registers.back().name()=output[i];
-  registers.back().t_1=0;
-  
+  registers.back().name()=op[m].output;
+  registers.back().t_1=op[m].tstep;
+  if(op[m])
+
+  for(j=0;j<m;j++)
+  {
+
+  }
+
 }
 
   int edge= op.size();
