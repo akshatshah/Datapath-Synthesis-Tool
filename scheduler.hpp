@@ -37,7 +37,7 @@ void  LIST_L (vector<struct operation> G, int a, int b, int c, int d){
                     list[op].v = true;
                     operationMUX++;    
             }
-            }else
+            }else 
                 break;
             }
         }
