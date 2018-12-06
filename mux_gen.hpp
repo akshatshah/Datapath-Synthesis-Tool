@@ -3,13 +3,6 @@
 
 #include "allocate_bind.h"
 
-struct mux
-{
-    int num_inputs;
-    int resource_id;
-    string resource_bind;
-};
-
 void mux_gen()
 {
   for(int i=0; i< register_num.size(); i++)
