@@ -1,6 +1,7 @@
 #ifndef ALLOCATE_BIND
 #define ALLOCATE_BIND
 
+
 void allocate_bind_fu(){
   int n= op.size();
   func_compat = new int*[n];
