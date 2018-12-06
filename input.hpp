@@ -7,6 +7,7 @@
 
 struct operation
 {
+<<<<<<< HEAD
     enum op_type {ADD, SUB, MULT, DIV};
     
     string name;
