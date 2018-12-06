@@ -18,7 +18,7 @@ void allocate_bind_fu(){
           func_compat[i][j]==1;
           func_compat[j][i]==1;
         }
-        if((op[i][j].type()==op[j][i].type())&&(op[i][j].tstep()!=op[j][i].tstep()
+        if((op[i].type()==op[j].type())&&(op[i].tstep()!=op[j].tstep()
         {
           func_compat[i][j]==1;
           func_compat[i][j]==1;
@@ -48,6 +48,28 @@ void allocate_bind_fu(){
 }
 
 void allocate_bind_reg(){
+
+for(i=0;i<input.size();i++)
+{
+  registers.push_back(reg());
+  registers.back().name=input[i];
+  registers.back().t_1=0;
+
+  for(j=0;j<m;j++)
+  {
+    if(op[m].op1==input[i]||op[m].op2==input[i])
+    registers.back().t_2=op[m].tstep;
+  }
+}
+
+for(i=0;i<output.size();i++)
+{
+  registers.push_back(reg());
+  registers.back().name()=output[i];
+  registers.back().t_1=0;
+  
+}
+
   int edge= op.size();
   reg_compat = new int*[n];
 
@@ -64,7 +86,7 @@ void allocate_bind_reg(){
           reg_compat[i][j]==1;
           reg_compat[j][i]==1;
         }
-        if((op[i][j].type()==op[j][i].type())&&(op[i][j].tstep()!=op[j][i].tstep()
+        if((reg[i].first()>=reg[j].last())||(reg[i].last()<=reg[j].first())
         {
           reg_compat[i][j]==1;
           reg_compat[i][j]==1;
