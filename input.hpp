@@ -2,10 +2,27 @@
 #include<fstream>
 #include<string>
 #include<vector>
+#include <array>
+#include <sstream>
 
 struct operation
 {
+    enum op_type {ADD, SUB, MULT, DIV};
+    
+    string name;
+    op_type type;
+    int width;
+    string in_edge;
+    string out_edge;
+};
 
+struct edge
+{
+    enum edge_type {INPUT, OUTPUT, REG};
+    
+    char edge_id[MAXIDLEN];
+    edge_type type;
+    int edge_width;
 };
 
 struct fu_resource
@@ -65,7 +82,7 @@ int** func_compat;
 int** reg_compat;
 
 void read_aif(){
-  string file;
+  std::string file, line;
 
   cout<<"Enter the input file name"<<endl;
   cin>>file;
@@ -74,26 +91,15 @@ void read_aif(){
 
   in_file.open(file);
 
+  std::istringstream iss;
+
   if(!in_file)
   {
     cout<< "Input file doesn't exist";
     exit(1);
   }
-  while(line!= "outputs")
-  {
-
-  }
-  while(line!="regs")
-  {
-
-  }
-  while(line!="op1")
-  {
-
-  }
-
-  while(line!="end")
-  {
-
-  }
+  
+  getline(file, line); //get inputs
+  iss.str(line);
+  iss >> discard;
 }
